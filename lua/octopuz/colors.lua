@@ -1,65 +1,17 @@
 local util = require("octopuz.util")
 
 local M = {}
-
+-- d9ed92
 ---@class Palette
 M.default = {
   none = "NONE",
-  bg_dark = "#1f2335",
-  bg = "#24283b",
-  bg_highlight = "#292e42",
-  terminal_black = "#414868",
-  fg = "#c0caf5",
-  fg_dark = "#a9b1d6",
-  fg_gutter = "#3b4261",
-  dark3 = "#545c7e",
-  comment = "#565f89",
-  dark5 = "#737aa2",
-  blue0 = "#3d59a1",
-  blue = "#7aa2f7",
-  cyan = "#7dcfff",
-  blue1 = "#2ac3de",
-  blue2 = "#0db9d7",
-  blue5 = "#89ddff",
-  blue6 = "#b4f9f8",
-  blue7 = "#394b70",
-  magenta = "#bb9af7",
-  magenta2 = "#ff007c",
-  purple = "#9d7cd8",
-  orange = "#ff9e64",
-  yellow = "#e0af68",
-  green = "#9ece6a",
-  green1 = "#73daca",
-  green2 = "#41a6b5",
-  teal = "#1abc9c",
-  red = "#f7768e",
-  red1 = "#db4b4b",
-  git = { change = "#6183bb", add = "#449dab", delete = "#914c54" },
-  gitSigns = {
-    add = "#266d6a",
-    change = "#536c9e",
-    delete = "#b2555b",
-  },
-}
-
-M.night = {
-  bg = "#1a1b26",
-  bg_dark = "#16161e",
-}
-M.day = M.night
-
-M.moon = function()
-  local ret = {
-    none = "NONE",
-    bg_dark = "#080808", --
+    bg_dark = "#000000", --
     bg = "#000000", --
     bg_highlight = "#2f334d", --
     terminal_black = "#444a73", --
     fg = "#c3ccdc", --
-    fg_dark = "#828bb8", --
-
+    fg_dark = "#acb4c2", --
     fg_gutter = "#303635",
-
     dark3 = "#545c7e",
     comment = "#acb4c2", --
     dark5 = "#737aa2",
@@ -76,31 +28,24 @@ M.moon = function()
     magenta = "#c099ff", --
     orange = "#f78c6c", --
     yellow = "#ffc777", --
-    green = "#ffcb8b", --
+    green = "#d9ed92", --
     green1 = "#7fdbca", --
     green2 = "#41a6b5",
     teal = "#4fd6be", --
     red = "#ff5874", --
     red1 = "#c53b53", --
-  }
-  ret.comment = util.blend(ret.comment, ret.bg, "bb")
-  ret.git = {
-    change = util.blend(ret.blue, ret.bg, "ee"),
-    add = util.blend(ret.green, ret.bg, "ee"),
-    delete = util.blend(ret.red, ret.bg, "dd"),
-  }
-  ret.gitSigns = {
-    change = util.blend(ret.blue, ret.bg, "66"),
-    add = util.blend(ret.green, ret.bg, "66"),
-    delete = util.blend(ret.red, ret.bg, "aa"),
-  }
-  return ret
-end
+  git = { change = "#6183bb", add = "#449dab", delete = "#914c54" },
+  gitSigns = {
+    add = "#266d6a",
+    change = "#536c9e",
+    delete = "#b2555b",
+  },
+}
 
 ---@return ColorScheme
 function M.setup(opts)
   opts = opts or {}
-  local config = require("tokyonight.config")
+  local config = require("octopuz.config")
 
   local style = config.is_day() and config.options.light_style or config.options.style
   local palette = M[style] or {}
